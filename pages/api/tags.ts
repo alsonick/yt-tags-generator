@@ -10,8 +10,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const tags = req.body.tags as string;
   const title = req.query.title;
 
-  console.log(title);
-
   if (!title) {
     return res
       .status(400)
@@ -33,17 +31,36 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const first = [...baseLevelTags];
   const firstTag = first.join(" ").replaceAll(",", "");
 
-  tagsInTextFormat = baseLevelTags
-    .join(" ")
-    .replaceAll(" ", ",")
-    .replace(/[^.,a-zA-Z]/g, "")
-    .replace(",,", "");
+  console.log(baseLevelTags);
 
-  const removeLastTraillingCommaInText = tagsInTextFormat[
-    tagsInTextFormat.length - 1
-  ].replace(/,\s*$/, "");
+  let validTagsThatCanBeCombined = [];
 
-  console.log(removeLastTraillingCommaInText);
+  for (let i = 0; i < baseLevelTags.length; i++) {
+    if (baseLevelTags[i].length > 2) {
+      validTagsThatCanBeCombined.push(baseLevelTags[i]);
+    } else {
+      continue;
+    }
+  }
+
+  let combined = [];
+
+  for (let i = 0; i < validTagsThatCanBeCombined.length; i++) {
+    for (let j = 0; j < validTagsThatCanBeCombined.length; j++) {
+      if (validTagsThatCanBeCombined[i] == validTagsThatCanBeCombined[j]) {
+        continue;
+      }
+      combined.push(
+        `${validTagsThatCanBeCombined[i]} ${validTagsThatCanBeCombined[j]}`
+      );
+    }
+  }
+
+  for (let i = 0; i < combined.length; i++) {
+    tagsInTextFormat += `${combined[i]},`;
+  }
+
+  console.log(tagsInTextFormat);
 
   res.status(200).send({
     success: true,
