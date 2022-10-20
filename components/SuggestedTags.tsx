@@ -28,12 +28,16 @@ export const SuggestedTags = ({
 
   let text = storedTagsTitle.join(",");
 
-  console.log(text.length > maxLength);
-
   return (
     <div className="flex flex-col text-center grid-flow-row shadow-md rounded p-6">
       <h2 className="text-black m2-4 font-semibold tracking-tight text-xl">
-        Suggested tags for {`"${title}"`}
+        Suggested tags for{" "}
+        {`"${title
+          .split("", 50)
+          .reduce(
+            (o, c) => (o.length === 49 ? `${o}${c}...` : `${o}${c}`),
+            ""
+          )}"`}
       </h2>
       <div className="flex flex-wrap items-center gap-1 my-4">
         {tags.map((tag) => (
@@ -49,7 +53,7 @@ export const SuggestedTags = ({
         content={text.length > maxLength ? "Too many characters!" : copyText}
         hideOnClick={false}
       >
-        <div className="w-fit">
+        <div className="w-fit flex flex-col">
           <Button
             onClick={() => {
               if (text.length > maxLength) {
@@ -61,6 +65,9 @@ export const SuggestedTags = ({
           >
             Copy to Clipboard
           </Button>
+          <p className="text-left text-sm text-gray-600 mt-2">
+            {copyText === "Copied" ? "Copied to the clipboard!" : null}
+          </p>
         </div>
       </Tippy>
       <p
