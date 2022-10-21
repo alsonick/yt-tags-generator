@@ -60,13 +60,30 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     tagsInTextFormat += `${combined[i]},`;
   }
 
-  console.log(tagsInTextFormat);
+  const resultingTags = tagsInTextFormat.split(",");
+
+  let tagsFixedLength = [];
+  let letterCount = 0;
+
+  for (let i = 0; i < resultingTags.length; i++) {
+    if (letterCount > 400) {
+      break;
+    }
+    tagsFixedLength.push(resultingTags[i]);
+    for (let j = 0; j < resultingTags[i].length; j++) {
+      letterCount += 1;
+    }
+  }
+
+  console.log(tagsFixedLength);
+  const tagsText = tagsFixedLength.join(",");
+  console.log(tagsText.length);
 
   res.status(200).send({
     success: true,
     data: {
       title,
-      tags: `${firstTag.replace(",,", "")},${tagsInTextFormat}`.replace(
+      tags: `${firstTag.replace(",,", "")},${tagsText}`.replace(
         /[^a-zA-Z0-9,\s]/g,
         ""
       ),
