@@ -66,7 +66,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   let letterCount = 0;
 
   for (let i = 0; i < resultingTags.length; i++) {
-    if (letterCount > 400) {
+    if (letterCount + firstTag.replace(",,", "").length > 450) {
       break;
     }
     tagsFixedLength.push(resultingTags[i]);
@@ -75,9 +75,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   }
 
-  console.log(tagsFixedLength);
   const tagsText = tagsFixedLength.join(",");
-  console.log(tagsText.length);
 
   res.status(200).send({
     success: true,
