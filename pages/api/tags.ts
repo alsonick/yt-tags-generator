@@ -81,10 +81,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     success: true,
     data: {
       title,
-      tags: `${firstTag.replace(",,", "")},${tagsText}`.replace(
-        /[^a-zA-Z0-9,\s]/g,
-        ""
-      ),
+      tags:
+        `${firstTag.replace(",,", "")},${tagsText}`
+          .replace(/[^a-zA-Z0-9,\s]/g, "")
+          .slice(0, -1) + "",
     },
   });
 }
