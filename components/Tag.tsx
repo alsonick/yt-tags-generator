@@ -11,13 +11,13 @@ export const Tag = ({ id, title, deleteTag }: Props) => {
     <div
       className="flex items-center w-fit text-gray-800 justify-center p-2
       tracking-tight cursor-pointer float-left mr-3 mb-2 rounded-full px-3 shadow font-semibold hover:shadow-lg
-      duration-300"
+      duration-300 dark:bg-[#383838] dark:text-gray-200"
       onClick={() => deleteTag(id)}
     >
       {title
         .split("", 60)
         .reduce((o, c) => (o.length === 59 ? `${o}${c}...` : `${o}${c}`), "")}
-      <BiXCircle className="ml-1 text-xl text-gray-800" />
+      <BiXCircle className="ml-1 text-xl text-gray-800 dark:text-gray-200" />
     </div>
   );
 };

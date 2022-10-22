@@ -36,7 +36,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   let validTagsThatCanBeCombined = [];
 
   for (let i = 0; i < baseLevelTags.length; i++) {
-    if (baseLevelTags[i].length > 2) {
+    if (baseLevelTags[i].length >= 3) {
       validTagsThatCanBeCombined.push(baseLevelTags[i]);
     } else {
       continue;

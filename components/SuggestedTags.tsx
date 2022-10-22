@@ -29,10 +29,11 @@ export const SuggestedTags = ({
   let text = storedTagsTitle.join(",");
 
   return (
-    <div className="flex flex-col text-center grid-flow-row shadow-md rounded p-6">
-      <h2 className="text-black m2-4 font-semibold tracking-tight text-xl">
+    <div className="flex flex-col text-center dark:bg-[#222222] grid-flow-row shadow-md rounded p-6">
+      <h2 className="text-black dark:text-white m2-4 font-semibold tracking-tight text-xl">
         Suggested tags for{" "}
         {`"${title
+          .trim()
           .split("", 50)
           .reduce(
             (o, c) => (o.length === 49 ? `${o}${c}...` : `${o}${c}`),
@@ -65,14 +66,16 @@ export const SuggestedTags = ({
           >
             Copy to Clipboard
           </Button>
-          <p className="text-left text-sm text-gray-600 mt-2">
+          <p className="text-left text-sm text-gray-600 dark:text-gray-400 mt-4">
             {copyText === "Copied" ? "Copied to the clipboard!" : null}
           </p>
         </div>
       </Tippy>
       <p
         className={`text-sm ml-auto ${
-          text.length > maxLength ? "text-red-500" : "text-gray-600"
+          text.length > maxLength
+            ? "text-red-500"
+            : "text-gray-600 dark:text-gray-400"
         }`}
       >
         {text.length}/{maxLength}
