@@ -27,11 +27,7 @@ const FooterLink = ({
 }) => {
   return (
     <Link href={link}>
-      <a
-        className="font-bold text-black dark:text-white"
-        title={link}
-        target="_blank"
-      >
+      <a className="font-bold text-black" title={link} target="_blank">
         {children}
       </a>
     </Link>

@@ -22,16 +22,28 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       .send({ success: false, error: "Please provide tags." });
   }
 
-  console.log(tags);
+  console.log(tags); // this
 
   let tagsInTextFormat = "";
 
   const baseLevelTags = tags.split(",");
 
   const first = [...baseLevelTags];
-  const firstTag = first.join(" ").replaceAll(",", "");
+  const firstTag = first.join(" ").replaceAll(" ", ",");
 
-  console.log(baseLevelTags);
+  let validBaseTags = [];
+
+  for (let i = 0; i < baseLevelTags.length; i++) {
+    if (baseLevelTags[i].length > 2) {
+      validBaseTags.push(baseLevelTags[i]);
+    }
+  }
+
+  const validBaseTagsInTextFormat = validBaseTags
+    .join(" ")
+    .replaceAll(" ", ",");
+
+  console.log(validBaseTagsInTextFormat);
 
   let validTagsThatCanBeCombined = [];
 
@@ -77,12 +89,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const tagsText = tagsFixedLength.join(",");
 
+  console.log(firstTag);
+
   res.status(200).send({
     success: true,
     data: {
       title,
       tags:
-        `${firstTag.replace(",,", "")},${tagsText}`
+        `${firstTag.replaceAll(
+          ",",
+          " "
+        )},${validBaseTagsInTextFormat},${tagsText}`
           .replace(/[^a-zA-Z0-9,\s]/g, "")
           .slice(0, -1) + "",
     },
