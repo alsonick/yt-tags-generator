@@ -78,19 +78,6 @@ const Home: NextPage = () => {
     }, 3000);
   };
 
-  // Validates the title input field.
-  const validateTheTitle = (title: string) => {
-    if (!title.trim()) {
-      setLoading(false);
-      return setInputError("Please enter the title.");
-    }
-
-    if (filter.isProfane(title)) {
-      setLoading(false);
-      return setInputError("Bad word!");
-    }
-  };
-
   const reset = () => {
     setInputError("");
     setTitle("");
@@ -100,7 +87,20 @@ const Home: NextPage = () => {
   const generateTags = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    validateTheTitle(title);
+    if (!title.trim()) {
+      setLoading(false);
+      return setInputError("Please enter the title.");
+    }
+
+    if (title.length > 70) {
+      setLoading(false);
+      return setInputError("You can only have 70 characters.");
+    }
+
+    if (filter.isProfane(title)) {
+      setLoading(false);
+      return setInputError("Bad word!");
+    }
 
     // Reset the values every time we generate a new set of tags.
     reset();
