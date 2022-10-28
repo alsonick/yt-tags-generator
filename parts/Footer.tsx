@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <footer
       className="text-sm text-center text-gray-500 dark:text-gray-500"
-      style={{ margin: "5rem" }}
+      style={{ margin: "2rem" }}
     >
       Made with ❤️ by{" "}
       <FooterLink link="https://github.com/alsonick">Nicholas</FooterLink>{" "}

@@ -160,7 +160,7 @@ const Home: NextPage = () => {
       </Head>
       <Navbar />
       <div className="flex flex-col lg:w-[45rem] w-[90%] items-center justify-center">
-        <header className="text-center relative pt-10 mb-5">
+        <header className="text-center relative pt-24 mb-5">
           <h1 className="text-black text-3xl tracking-tight font-bold">
             {title
               ? title
@@ -174,7 +174,7 @@ const Home: NextPage = () => {
           <p className="text-gray-800 mt-5 text-left">
             This is a free tool that you could use to generate SEO optimized
             tags for your video. This is mainly perfect for YouTube videos that
-            have unopinionated titles.
+            have opinionated titles.
             <br />
             <br />
             Tags are generated heavily based on the title you provide, but we
@@ -192,7 +192,7 @@ const Home: NextPage = () => {
                 setTitle(e.target.value);
               }}
               required={true}
-              placeholder="Enter your YouTube title here..."
+              placeholder="Enter your YouTube title or keywords here..."
               type="text"
             />
 
