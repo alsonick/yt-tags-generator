@@ -15,7 +15,7 @@ export const Navbar = () => {
       <h1 className="font-bold text-xl tracking-tight text-black">
         YouTube Tags Generator
       </h1>
-      <Link href="">
+      <Link href="https://github.com/alsonick/yt-tags-generator">
         <a
           className="text-3xl text-black"
           target="_blank"

@@ -4,7 +4,7 @@ import React from "react";
 export const Footer = () => {
   return (
     <footer
-      className="text-sm text-center text-gray-500 dark:text-gray-500"
+      className="text-sm text-center text-gray-500 pb-5 dark:text-gray-500"
       style={{ margin: "2rem" }}
     >
       Made with ❤️ by{" "}

@@ -4,7 +4,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
     return res
       .status(404)
-      .send({ success: false, error: "Unsuported request method." });
+      .send({ success: false, error: "Unsupported request method." });
   }
 
   const tags = req.body.tags as string;
@@ -78,7 +78,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   let letterCount = 0;
 
   for (let i = 0; i < resultingTags.length; i++) {
-    if (letterCount + firstTag.replace(",,", "").length > 450) {
+    if (
+      letterCount +
+        firstTag.replace(",,", "").length +
+        validBaseTagsInTextFormat.length >
+      450
+    ) {
       break;
     }
     tagsFixedLength.push(resultingTags[i]);

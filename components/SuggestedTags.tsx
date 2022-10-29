@@ -58,7 +58,6 @@ export const SuggestedTags = ({
           <Button
             onClick={() => {
               if (text.length > maxLength) {
-                alert("Too many characters!!");
                 return;
               }
               copy();
@@ -69,6 +68,11 @@ export const SuggestedTags = ({
           <p className="text-left text-sm text-gray-600 mt-4">
             {copyText === "Copied" ? "Copied to the clipboard!" : null}
           </p>
+          {text.length > maxLength && (
+            <p className="text-left text-sm text-red-500 mt-4">
+              Too many characters.
+            </p>
+          )}
         </div>
       </Tippy>
       <p
