@@ -178,9 +178,13 @@ const Home: NextPage = () => {
             <br />
             <br />
             Tags are generated heavily based on the title you provide, but we
-            try to generate the best tags based on the title. Sometimes you
-            won&apos;t get the best suggested tags so we recommend provide a
-            combination of keywords instead of the actual title.
+            try to generate the best tags based on the title. If the title
+            doesn&apos;t correlate with you ideal tags then use keywords
+            instead.
+            <br />
+            <br /> Sometimes you won&apos;t get the best suggested tags so we
+            recommend provide a combination of keywords instead of the actual
+            title.
           </p>
         </header>
         <div className="flex flex-col items-center w-full border-b pb-10">
